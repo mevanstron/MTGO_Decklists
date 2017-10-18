@@ -6,4 +6,9 @@ puts "Starting from the most recent, how many Competitive Standard Constructed L
 
 input = gets.chomp.to_i
 
+while input < 1
+  puts "Please enter a number greater than 0."
+  input = gets.chomp.to_i
+end
+
 puts "Thank you"
