@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "./lib/MTGO_Decklists"
+
+MTGODecklists::CLI.new.call
