@@ -26,15 +26,13 @@ class MTGODecklists::MTGOEvent
 
   def self.scrape_event(index)
     doc = Nokogiri::HTML(open("https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info"))
-    doc_event = doc.css("div.article-item-extended")[index]
 
-    event = self.create.tap
-    event.name = doc_event.css("div.title h3").text
-    event.date = doc_event.css("div.title p").text.strip
-    event.url = "https://magic.wizards.com#{doc_event.css("a").attribute("href").value}"
+    event = self.create
+    event.name = doc.css("div.article-item-extended")[index].css("div.title h3").text
+    event.date = doc.css("div.article-item-extended")[index].css("div.title p").text.strip
+    event.url = "https://magic.wizards.com#{doc.css("div.article-item-extended")[index].css("a").attribute("href").value}"
 
     event.decks = MTGODecklists::MTGODeck.decklists(event.url)
-
     event
   end
 end

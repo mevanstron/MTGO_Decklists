@@ -3,12 +3,12 @@ class MTGODecklists::CLI
   def call
     puts "Welcome to the Magic the Gathering Online Event Decklists App!"
 
-    puts "Starting from the most recent event, how many would you like to view?"
+    puts "Starting from the most recent event, how many would you like to view (out of 6 total)?"
 
     input_1 = gets.chomp.to_i
 
-    while input_1 < 1
-      puts "Please enter a number greater than 0."
+    while !input_1.between?(1, 6)
+      puts "Please enter a number between 1 and 5."
       input_1 = gets.chomp.to_i
     end
 
