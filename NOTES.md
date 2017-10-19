@@ -12,4 +12,11 @@ App Flow:
   - Asks user which tournament's decklists they would like to view (individual or all).
   - Displays decklsits from requested tournaments.
 
-  
+
+Deck properties:
+  - has card_name
+  - has card_name count
+  - has card types
+  - has a MTGO user
+  - has a Deck win record
+  - has a sideboard
