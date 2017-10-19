@@ -3,7 +3,7 @@ class MTGODecklists::CLI
   def call
     puts "Welcome to the Magic the Gathering Online Event Decklists App!"
 
-    puts "Starting from the most recent, how many Event results would you like to view?"
+    puts "Starting from the most recent event, how many would you like to view?"
 
     input_1 = gets.chomp.to_i
 
@@ -12,7 +12,7 @@ class MTGODecklists::CLI
       input_1 = gets.chomp.to_i
     end
 
-    puts "The 2 most recent events are"
+    puts "The #{input_1} most recent events are"
     @events = MTGODecklists::MTGOEvent.recent_events(input_1)
     @events.each.with_index(1) do |event, i|
       puts "#{i}. #{event.name} - #{event.date}"
@@ -27,6 +27,7 @@ class MTGODecklists::CLI
       input_2 = gets.chomp
     end
 
+    @eventdecks = @events[input_2.to_i].decks
     puts "Displaying Decklists"
   end
 end

@@ -3,6 +3,10 @@ class MTGODecklists::MTGOEvent
 
   @@events = []
 
+  def initialize
+    @decks = []
+  end
+
   def self.all
     @@events
   end
@@ -16,30 +20,20 @@ class MTGODecklists::MTGOEvent
   end
 
   def self.recent_events(event_count)
-
-    event_count.times do |e|
-      self.scrape_event(e)
-    end
-
-    #event_1 = self.scrape_event
-
-    #event_2 = self.new
-    #event_2.name = "Competitive Commander Constructed League"
-    #event_2.date = "October 18, 2017"
-    #event_2.decks = {}
-    #event_2.url = "https://magic.wizards.com/en/articles/archive/mtgo-standings/competitive-commander-constructed-league-2017-10-18"
-
+    event_count.times{|e| self.scrape_event(e)}
     self.all
   end
 
   def self.scrape_event(index)
     doc = Nokogiri::HTML(open("https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info"))
+    doc_event = doc.css("div.article-item-extended")[index]
 
-    event = self.create
+    event = self.create.tap
+    event.name = doc_event.css("div.title h3").text
+    event.date = doc_event.css("div.title p").text.strip
+    event.url = "https://magic.wizards.com#{doc_event.css("a").attribute("href").value}"
 
-    event.name = doc.css("div.article-item-extended")[index].css("div.title h3").text
-    event.date = doc.css("div.article-item-extended")[index].css("div.title p").text.strip
-    event.url = "https://magic.wizards.com#{doc.css("div.article-item-extended")[index].css("a").attribute("href").value}"
+    event.decks = MTGODecklists::MTGODeck.decklists(event.url)
 
     event
   end
