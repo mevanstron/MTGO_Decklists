@@ -17,16 +17,16 @@ class MTGODecklists::CLI
         1. October 17, 2017
         2. October 16, 2017
     DOC
+
+    puts "Which tournament would you like to select for decklist viewing?  Type in the number from the list above, or type 'all' to display all decklists."
+
+    input_2 = gets.chomp
+
+    while (input_2 != "all" && (input_2.to_i < 1 || input_2.to_i > input_1.to_i))
+      puts "Please enter a number from the list of events or 'all'."
+      input_2 = gets.chomp
+    end
+
+    puts "Displaying Decklists"
   end
-
-  puts "Which tournament would you like to select for decklist viewing?  Type in the number from the list above, or type 'all' to display all decklists."
-
-  input_2 = gets.chomp
-
-  while (input_2 != "all" && input_2.to_i < 0) || input_2.to_i > input_1.to_i
-    puts "Please enter a number from the list of events or 'all'."
-    input_2 = gets.chomp.to_i
-  end
-
-  puts "Displaying Decklists"
 end
