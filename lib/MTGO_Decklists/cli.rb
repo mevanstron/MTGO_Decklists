@@ -5,15 +5,15 @@ class MTGODecklists::CLI
 
     puts "Starting from the most recent, how many Event results would you like to view?"
 
-    input_1 = gets.chomp
+    input_1 = gets.chomp.to_i
 
-    while input_1.to_i < 1
+    while input_1 < 1
       puts "Please enter a number greater than 0."
-      input_1 = gets.chomp
+      input_1 = gets.chomp.to_i
     end
 
     puts "The 2 most recent events are"
-    @events = MTGODecklists::MTGOEvent.recent_events
+    @events = MTGODecklists::MTGOEvent.recent_events(input_1)
     @events.each.with_index(1) do |event, i|
       puts "#{i}. #{event.name} - #{event.date}"
     end
