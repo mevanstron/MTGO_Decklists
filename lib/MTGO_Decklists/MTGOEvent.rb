@@ -1,7 +1,7 @@
 class MTGODecklists::MTGOEvent
   attr_accessor :name, :date, :decks, :url
 
-  @@events_url = "https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info"
+  @@events = []
 
   def self.recent_events
 
@@ -17,11 +17,18 @@ class MTGODecklists::MTGOEvent
     event_2.decks = {}
     event_2.url = "https://magic.wizards.com/en/articles/archive/mtgo-standings/competitive-commander-constructed-league-2017-10-18"
 
-    puts <<-DOC
-      The 2 most recent events are:
-        1. #{event_1.name} - #{event_1.date}
-        2. #{event_2.name} - #{event_2.date}
-    DOC
+    [event_1, event_2]
+  end
 
+  def self.scrape_event
+    event = nil
+
+    doc = Nokogiri::HTML(open("https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info"))
+    #go to events_url
+    #extract properties
+    #instantiate an event
+    event
   end
 end
+#event =
+#event_1.name =

@@ -12,7 +12,11 @@ class MTGODecklists::CLI
       input_1 = gets.chomp
     end
 
-    MTGODecklists::MTGOEvent.recent_events
+    puts "The 2 most recent events are"
+    @events = MTGODecklists::MTGOEvent.recent_events
+    @events.each.with_index(1) do |event, i|
+      puts "#{i}. #{event.name} - #{event.date}"
+    end
 
     puts "Which tournament would you like to select for decklist viewing?  Type in the number from the list above, or type 'all' to display all decklists."
 
