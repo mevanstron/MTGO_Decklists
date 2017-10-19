@@ -24,6 +24,8 @@ class MTGODecklists::MTGOEvent
     event = nil
 
     doc = Nokogiri::HTML(open("https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info"))
+
+    event_1.url = doc.css("div.article-item-extended").first.css("a").attribute("href").value
     #go to events_url
     #extract properties
     #instantiate an event
