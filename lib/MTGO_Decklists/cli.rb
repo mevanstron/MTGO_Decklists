@@ -1,3 +1,5 @@
+require_relative "./MTGOEvent"
+
 class MTGODecklists::CLI
 
   def call
@@ -17,6 +19,8 @@ class MTGODecklists::CLI
         1. October 17, 2017
         2. October 16, 2017
     DOC
+
+    MTGODecklists::MTGOEvent.recent_events
 
     puts "Which tournament would you like to select for decklist viewing?  Type in the number from the list above, or type 'all' to display all decklists."
 
