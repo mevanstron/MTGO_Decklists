@@ -1,5 +1,3 @@
-require_relative "./MTGOEvent"
-
 class MTGODecklists::CLI
 
   def call
@@ -13,12 +11,6 @@ class MTGODecklists::CLI
       puts "Please enter a number greater than 0."
       input_1 = gets.chomp
     end
-
-    puts <<-DOC
-      The 2 most recent events are dated:
-        1. October 17, 2017
-        2. October 16, 2017
-    DOC
 
     MTGODecklists::MTGOEvent.recent_events
 
