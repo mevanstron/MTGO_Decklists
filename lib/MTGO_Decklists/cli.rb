@@ -1,9 +1,9 @@
 class MTGODecklists::CLI
 
   def call
-    puts "Welcome to the Magic the Gathering Online Standard Decklists App!"
+    puts "Welcome to the Magic the Gathering Online Event Decklists App!"
 
-    puts "Starting from the most recent, how many Competitive Standard Constructed League event results would you like to view?"
+    puts "Starting from the most recent, how many Event results would you like to view?"
 
     input_1 = gets.chomp
 
