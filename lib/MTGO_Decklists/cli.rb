@@ -26,7 +26,7 @@ class MTGODecklists::CLI
       puts "Please enter a number from the list of events or 'all'."
       input_2 = gets.chomp
     end
-
+    binding.pry
     @eventdecks = @events[input_2.to_i].decks
     @eventdecks.first.display
     puts "Displaying Decklists"

@@ -11,14 +11,14 @@ class MTGODecklists::MTGODeck
     deck.user = "SPERLING"
     deck.cards = {"creature" => {"Dryad Arbor" => 1,"Dark Confidant" => 3}, "sideboard" => {"Null Rod" => 1, "Swords to Plowshares" => 2}}
     deck.win_record = "(5-0)"
-
+    deck
   end
 
   def display
     puts "#{self.user} #{self.win_record}"
     self.cards.each do |key, values|
       puts "#{key}"
-      key.each do |name, count|
+      self.cards[key].each do |name, count|
         puts "#{count} #{name}"
       end
     end
