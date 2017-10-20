@@ -9,7 +9,7 @@ class MTGODecklists::MTGODeck
     deck = self.new
 
     deck.user = "SPERLING"
-    deck.cards = {"creature" => {"Dryad Arbor" => 1,"Dark Confidant" => 3}, "sideboard" => {"Null Rod" => 1, "Swords to Plowshares" => 2}}
+    deck.cards = {"Creature" => {"Dryad Arbor" => 1,"Dark Confidant" => 3}, "Sideboard" => {"Null Rod" => 1, "Swords to Plowshares" => 2}}
     deck.win_record = "(5-0)"
     deck
   end
