@@ -10,9 +10,18 @@ class MTGODecklists::MTGODeck
     @@all
   end
 
+  def save
+    MTGODecklists::MTGODeck.all << self
+  end
+
   def self.decklists(url)
+    self.scrape_deck(url)
+    self.all
+  end
+
+  def self.scrape_deck(url)
     doc = Nokogiri::HTML(open(url))
-    doc_decks = doc.css("div.decklists div").children
+    doc_decks = doc.css("div.decklists").children
 
     doc_decks.each do |deck_data|
       deck = self.new
@@ -24,27 +33,13 @@ class MTGODecklists::MTGODeck
         type = cards_by_type.css("h5").text
         deck.cards[type] = []
 
-        cards_by_type.css("span.card-name a").each do |card_name|
-
-          deck.cards[type] << card_name.text
+        cards_by_type.css("span.row").each do |card|
+          deck.cards[type] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
         end
       end
+      binding.pry
+      deck.save
     end
-
-
-
-    #card_types = doc.css("div.sorted-by-overview-container div:not(.regular-card-total)")
-    #card_types.each do |cards_by_type|
-      #type = cards_by_type.css("h5").text
-      #cards_by_type.css("span.card-name a").each do |card_name|
-        #deck.cards[type] = card_name.text
-      #end
-      #deck.cards["Creature (2)"] = doc.css("div.sorted-by-overview-container div:not(.regular-card-total)").first.css("span.card-name a").first.text
-    #end
-
-    #deck.user = "SPERLING"
-    #deck.cards = {"Creature" => {"Dryad Arbor" => 1,"Dark Confidant" => 3}, "Sideboard" => {"Null Rod" => 1, "Swords to Plowshares" => 2}}
-    #deck
   end
 
   def display
