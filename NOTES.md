@@ -21,3 +21,9 @@ Deck properties:
   - has a Deck win record
   - has a sideboard
   - has a mainboard
+  - has a display method that displays itself.
+
+Card hash:
+  -Key is card type
+    -card type has card_names
+      -card_names have a count

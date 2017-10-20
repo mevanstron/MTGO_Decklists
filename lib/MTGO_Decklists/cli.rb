@@ -28,6 +28,7 @@ class MTGODecklists::CLI
     end
 
     @eventdecks = @events[input_2.to_i].decks
+    @eventdecks.first.display
     puts "Displaying Decklists"
   end
 end
