@@ -3,6 +3,7 @@ class MTGODecklists::MTGODeck
 
   def initialize
     @cards = {}
+  end
 
   def self.decklist(url)
     deck = self.new
@@ -14,15 +15,14 @@ class MTGODecklists::MTGODeck
   end
 
   def display
-    puts "#{deck.user}"
-    deck.cards.each do |key, values|
+    puts "#{self.user} #{self.win_record}"
+    self.cards.each do |key, values|
       puts "#{key}"
       key.each do |name, count|
         puts "#{count} #{name}"
       end
     end
   end
-
 end
 
 #self.cards = {
