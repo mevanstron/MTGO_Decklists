@@ -37,6 +37,15 @@ class MTGODecklists::MTGODeck
           deck.cards[type] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
         end
       end
+
+      sideboard = deck_data.css("div.sorted-by-sideboard-container")
+
+      sideboard_title = sideboard.css("h5").text
+      deck.cards[sideboard_title] = []
+
+      sideboard.css("span.row").each do |card|
+        deck.cards[sideboard_title] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
+      end
       deck.save
     end
   end
@@ -46,7 +55,6 @@ class MTGODecklists::MTGODeck
     self.cards.each do |key, values|
       puts "#{key}"
       self.cards[key].each do |card|
-
         puts "#{card.values.join.to_i} #{card.keys.join}"
       end
     end
