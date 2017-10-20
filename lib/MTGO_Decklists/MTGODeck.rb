@@ -11,13 +11,12 @@ class MTGODecklists::MTGODeck
     deck = self.new
     deck.user_wins = doc.css("div.deck-group").first.css("span.deck-meta h4").text.upcase
 
-    deck.cards["Creature (2)"] = doc.css("div.sorted-by-overview-container").first.css("span.name a").attribute("href").text
+    deck.cards["Creature (2)"] = doc.css("div.sorted-by-overview-container div").first.css("span.card-name a").first.text
 
 
 
     #deck.user = "SPERLING"
     deck.cards = {"Creature" => {"Dryad Arbor" => 1,"Dark Confidant" => 3}, "Sideboard" => {"Null Rod" => 1, "Swords to Plowshares" => 2}}
-    deck.win_record = "(5-0)"
     deck
   end
 
