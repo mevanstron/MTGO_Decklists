@@ -1,5 +1,5 @@
 class MTGODecklists::MTGODeck
-  attr_accessor :cards, :user, :win_record
+  attr_accessor :cards, :user_wins
 
   def initialize
     @cards = {}
@@ -9,8 +9,9 @@ class MTGODecklists::MTGODeck
     doc = Nokogiri::HTML(open(url))
 
     deck = self.new
-    deck.user = doc.css("div.deck-group").first.css("span.deck-meta h4").text.upcase
+    deck.user_wins = doc.css("div.deck-group").first.css("span.deck-meta h4").text.upcase
 
+    deck.cards["Creature (2)"] = doc.css("div.sorted-by-overview-container").first.css("span.name a").attribute("href").text
 
 
 
