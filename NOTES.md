@@ -20,3 +20,4 @@ Deck properties:
   - has a MTGO user
   - has a Deck win record
   - has a sideboard
+  - has a mainboard
