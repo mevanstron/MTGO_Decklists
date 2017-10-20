@@ -1,5 +1,5 @@
 class MTGODecklists::MTGODeck
-  attr_accessor :cards, :user_wins
+  attr_accessor :user_wins, :cards
 
   @@all = []
   def initialize
@@ -37,20 +37,18 @@ class MTGODecklists::MTGODeck
           deck.cards[type] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
         end
       end
-      binding.pry
       deck.save
     end
   end
 
   def display
-    puts "#{self.user} #{self.win_record}"
+    puts "#{self.user_wins}"
     self.cards.each do |key, values|
       puts "#{key}"
-      self.cards[key].each do |name, count|
-        puts "#{count} #{name}"
+      self.cards[key].each do |card|
+
+        puts "#{card.values.join.to_i} #{card.keys.join}"
       end
     end
   end
 end
-
-#deck.cards = [Key]
