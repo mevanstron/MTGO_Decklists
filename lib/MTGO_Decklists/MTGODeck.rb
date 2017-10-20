@@ -6,9 +6,15 @@ class MTGODecklists::MTGODeck
   end
 
   def self.decklist(url)
-    deck = self.new
+    doc = Nokogiri::HTML(open(url))
 
-    deck.user = "SPERLING"
+    deck = self.new
+    deck.user = doc.css("div.deck-group").first.css("span.deck-meta h4").text.upcase
+
+
+
+
+    #deck.user = "SPERLING"
     deck.cards = {"Creature" => {"Dryad Arbor" => 1,"Dark Confidant" => 3}, "Sideboard" => {"Null Rod" => 1, "Swords to Plowshares" => 2}}
     deck.win_record = "(5-0)"
     deck
