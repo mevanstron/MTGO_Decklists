@@ -27,9 +27,15 @@ class MTGODecklists::CLI
       input_2 = gets.chomp
     end
 
-    @event_decks = @events[input_2.to_i - 1].decks
-
-    @event_decks.each{|deck| deck.display}
-    puts "Displaying Decklists"
+    if input_2.to_i > 0
+      puts "\n//#{@events[input_2.to_i - 1].name}//\n\n"
+      @events[input_2.to_i - 1].decks.each{|deck| deck.display}
+    else
+      @events.each do |event|
+        puts "\n//#{event.name}//\n\n"
+        event.decks.each{|deck| deck.display}
+      end
+    end
+    #puts "Displaying Decklists"
   end
 end
