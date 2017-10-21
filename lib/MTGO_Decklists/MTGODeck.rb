@@ -56,10 +56,11 @@ class MTGODecklists::MTGODeck
   def display
     puts "#{self.user_wins}"
     self.cards.each do |key, values|
-      puts "#{key}"
+      puts "\n#{key}"
       self.cards[key].each do |card|
         puts "#{card.values.join.to_i} #{card.keys.join}"
       end
     end
+    puts "--------------"
   end
 end

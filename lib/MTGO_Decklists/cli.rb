@@ -8,7 +8,7 @@ class MTGODecklists::CLI
     input_1 = gets.chomp.to_i
 
     while !input_1.between?(1, 6)
-      puts "Please enter a number between 1 and 5."
+      puts "Please enter a number between 1 and 6."
       input_1 = gets.chomp.to_i
     end
 
@@ -18,7 +18,7 @@ class MTGODecklists::CLI
       puts "#{i}. #{event.name} - #{event.date}"
     end
 
-    puts "Which tournament would you like to select for decklist viewing?  Type in the number from the list above, or type 'all' to display all decklists."
+    puts "Which event would you like to select for decklist viewing?  Type in the number from the list above, or type 'all' to display all decks from all events."
 
     input_2 = gets.chomp
 
