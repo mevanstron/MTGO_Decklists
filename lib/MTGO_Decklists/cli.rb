@@ -28,8 +28,8 @@ class MTGODecklists::CLI
     end
 
     @eventdecks = @events[input_2.to_i - 1].decks
-
-    @eventdecks.first.display
+    binding.pry
+    @eventdecks.each{|deck| deck.display}
     puts "Displaying Decklists"
   end
 end

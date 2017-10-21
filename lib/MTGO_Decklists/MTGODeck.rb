@@ -14,6 +14,10 @@ class MTGODecklists::MTGODeck
     MTGODecklists::MTGODeck.all << self
   end
 
+  def self.create
+    self.new.tap{|deck| deck.save}
+  end
+
   def self.decklists(url)
     self.scrape_deck(url)
     self.all
@@ -24,7 +28,7 @@ class MTGODecklists::MTGODeck
     doc_decks = doc.css("div.decklists").children
 
     doc_decks.each do |deck_data|
-      deck = self.new
+      deck = self.create
       deck.user_wins = deck_data.css("span.deck-meta h4").text.upcase
 
       card_types = deck_data.css("div.sorted-by-overview-container div:not(.regular-card-total)")
@@ -46,7 +50,7 @@ class MTGODecklists::MTGODeck
       sideboard.css("span.row").each do |card|
         deck.cards[sideboard_title] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
       end
-      deck.save
+      deck
     end
   end
 
