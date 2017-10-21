@@ -20,14 +20,13 @@ class MTGODecklists::MTGODeck
 
   def self.decklists(url)
     self.scrape_deck(url)
-    self.all
   end
 
   def self.scrape_deck(url)
     doc = Nokogiri::HTML(open(url))
     doc_decks = doc.css("div.decklists").children
 
-    doc_decks.each do |deck_data|
+    doc_decks.collect do |deck_data|
       deck = self.create
       deck.user_wins = deck_data.css("span.deck-meta h4").text.upcase
 
