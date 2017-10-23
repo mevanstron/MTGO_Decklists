@@ -1,15 +1,13 @@
-# MTGODecklists
+# MTGOEvent_Decks
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/MTGO_Decklists`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+MTGO Event_Decks offers a user access to view information from Magic The Gathering Online' recent tournaments.  A user may view a list of the most recent events (up to 6).  They may then select which event's top performing decks they would like to view.  Once displayed, the decks will show details including the user, their win record, and cards arranged by type.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'MTGO_Decklists'
+gem 'MTGO_Event_Decks'
 ```
 
 And then execute:
@@ -18,11 +16,19 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install MTGO_Decklists
+    $ gem install MTGO_Event_Decks
 
 ## Usage
 
-TODO: Write usage instructions here
+Once welcomed, the user inputs the amount of recent events they would like to view in list form (User enters 1 - 6).
+
+The terminal will print a list of events.
+
+The user is then prompted to select either the specific event for which they would like to view top performing decks, or they may select 'all' to view all decks from all events (User enters 1 - 6, or 'all').
+
+The terminal will then print deck lists pertaining to the chosen events.
+
+End of program.
 
 ## Development
 
@@ -32,4 +38,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/'mevanstron'/MTGO_Decklists.
+Bug reports and pull requests are welcome on GitHub at https://github.com/'mevanstron'/MTGO_Event_Decks.
