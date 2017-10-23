@@ -20,19 +20,20 @@ class MTGOEventDecks::Event
   end
 
   def self.recent_events(event_count)
-    event_count.times{|e| self.scrape_event(e)}
+    self.scrape_events(event_count)
     self.all
   end
 
-  def self.scrape_event(index)
+  def self.scrape_events(event_count)
     doc = Nokogiri::HTML(open("https://magic.wizards.com/en/content/deck-lists-magic-online-products-game-info"))
 
-    event = self.create
-    event.name = doc.css("div.article-item-extended")[index].css("div.title h3").text
-    event.date = doc.css("div.article-item-extended")[index].css("div.title p").text.strip
-    event.url = "https://magic.wizards.com#{doc.css("div.article-item-extended")[index].css("a").attribute("href").value}"
+    event_count.times do |i|
+      event = self.create
+      event.name = doc.css("div.article-item-extended")[i].css("div.title h3").text
+      event.date = doc.css("div.article-item-extended")[i].css("div.title p").text.strip
+      event.url = "https://magic.wizards.com#{doc.css("div.article-item-extended")[i].css("a").attribute("href").value}"
 
-    event.decks = MTGOEventDecks::Deck.decklists(event.url)
-    event
+      event.decks = MTGOEventDecks::Deck.decklists(event.url)
+    end
   end
 end
