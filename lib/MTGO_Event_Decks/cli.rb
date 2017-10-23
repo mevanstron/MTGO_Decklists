@@ -2,7 +2,7 @@ class MTGOEventDecks::CLI
 
   def call
     puts "Welcome to the Magic the Gathering Online Event Decklists App!"
-    puts "Starting from the most recent event, how many would you like to view (out of 6 total)?"
+    puts "\nStarting from the most recent event, how many would you like to view (out of 6 total)?"
 
     input_1 = gets.chomp.to_i
 
@@ -11,7 +11,7 @@ class MTGOEventDecks::CLI
       input_1 = gets.chomp.to_i
     end
 
-    puts "The #{input_1} most recent events are"
+    puts "The most recent event(s):"
 
     @events = MTGOEventDecks::Event.recent_events(input_1)
 
@@ -19,7 +19,7 @@ class MTGOEventDecks::CLI
       puts "#{i}. #{event.name} - #{event.date}"
     end
 
-    puts "Which event would you like to select for decklist viewing?"
+    puts "\nWhich event would you like to select for decklist viewing?"
     puts "Type in the number from the list above, or type 'all' to display all decks from all events."
 
     input_2 = gets.chomp
