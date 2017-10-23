@@ -4,13 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "MTGO_Decklists/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "MTGO_Decklists"
-  spec.version       = MTGODecklists::VERSION
+  spec.name          = "MTGO_Event_Decks"
+  spec.version       = MTGOEventDecks::VERSION
   spec.authors       = ["'Michael Evans'"]
   spec.email         = ["'michael@michaelgregoryevans.com'"]
 
-  spec.summary       = %q{"Write a short summary, because Rubygems requires one."}
-  spec.description   = %q{"Write a longer description or delete this line."}
+  spec.summary       = %q{"Scrapes data from the web and allows a user to view specific decks from an MTGO Event"}
   spec.homepage      = "https://github.com/"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
