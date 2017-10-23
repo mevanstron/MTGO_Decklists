@@ -21,20 +21,19 @@ class MTGOEventDecks::Deck
   end
 
   def self.event_decks(url, event)
-    self.scrape_deck(url, event)
+    self.scrape_decks(url, event)
   end
 
-  def self.scrape_deck(url, event)
+  def self.scrape_decks(url, event)
     doc = Nokogiri::HTML(open(url))
     doc_decks = doc.css("div.decklists").children
 
     doc_decks.collect do |deck_data|
-      deck = self.create
-      deck.user_wins = deck_data.css("span.deck-meta h4").text.upcase
-      deck.event = event
-      deck.cards = deck_data
-
-      deck
+      self.create.tap do |deck|
+        deck.user_wins = deck_data.css("span.deck-meta h4").text.upcase
+        deck.event = event
+        deck.cards = deck_data
+      end
     end
   end
 
