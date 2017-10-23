@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require "./lib/MTGO_Decklists"
+require "./lib/MTGO_Event_Decks"
 
-MTGODecklists::CLI.new.call
+MTGOEventDecks::CLI.new.call

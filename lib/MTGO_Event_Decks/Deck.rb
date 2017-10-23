@@ -1,4 +1,4 @@
-class MTGODecklists::MTGODeck
+class MTGOEventDecks::Deck
   attr_accessor :user_wins, :cards
 
   @@all = []
@@ -11,7 +11,7 @@ class MTGODecklists::MTGODeck
   end
 
   def save
-    MTGODecklists::MTGODeck.all << self
+    MTGOEventDecks::Deck.all << self
   end
 
   def self.create

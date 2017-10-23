@@ -1,4 +1,4 @@
-class MTGODecklists::CLI
+class MTGOEventDecks::CLI
 
   def call
     puts "Welcome to the Magic the Gathering Online Event Decklists App!"
@@ -13,7 +13,7 @@ class MTGODecklists::CLI
     end
 
     puts "The #{input_1} most recent events are"
-    @events = MTGODecklists::MTGOEvent.recent_events(input_1)
+    @events = MTGOEventDecks::Event.recent_events(input_1)
     @events.each.with_index(1) do |event, i|
       puts "#{i}. #{event.name} - #{event.date}"
     end
