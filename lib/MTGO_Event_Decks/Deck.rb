@@ -1,13 +1,14 @@
 class MTGOEventDecks::Deck
-  attr_accessor :user_wins, :cards
+  attr_accessor :user_wins, :cards, :event
 
-  @@all = []
+  @@decks = []
+
   def initialize
     @cards = {}
   end
 
   def self.all
-    @@all
+    @@decks
   end
 
   def save
@@ -18,7 +19,7 @@ class MTGOEventDecks::Deck
     self.new.tap{|deck| deck.save}
   end
 
-  def self.decklists(url)
+  def self.event_decks(url)
     self.scrape_deck(url)
   end
 
