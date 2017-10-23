@@ -1,5 +1,6 @@
 class MTGOEventDecks::Deck
-  attr_accessor :user_wins, :cards, :event
+  attr_accessor :user_wins, :event
+  attr_accessor :cards
 
   @@decks = []
 
@@ -19,38 +20,38 @@ class MTGOEventDecks::Deck
     self.new.tap{|deck| deck.save}
   end
 
-  def self.event_decks(url)
-    self.scrape_deck(url)
+  def self.event_decks(url, event)
+    self.scrape_deck(url, event)
   end
 
-  def self.scrape_deck(url)
+  def self.scrape_deck(url, event)
     doc = Nokogiri::HTML(open(url))
     doc_decks = doc.css("div.decklists").children
 
     doc_decks.collect do |deck_data|
       deck = self.create
       deck.user_wins = deck_data.css("span.deck-meta h4").text.upcase
+      deck.event = event
+      deck.cards = deck_data
 
-      card_types = deck_data.css("div.sorted-by-overview-container div:not(.regular-card-total)")
-
-      card_types.each do |cards_by_type|
-        type = cards_by_type.css("h5").text
-        deck.cards[type] = []
-
-        cards_by_type.css("span.row").each do |card|
-          deck.cards[type] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
-        end
-      end
-
-      sideboard = deck_data.css("div.sorted-by-sideboard-container")
-
-      sideboard_title = sideboard.css("h5").text
-      deck.cards[sideboard_title] = []
-
-      sideboard.css("span.row").each do |card|
-        deck.cards[sideboard_title] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
-      end
       deck
+    end
+  end
+
+  def cards=(deck_data)
+    card_types = deck_data.css("div.sorted-by-overview-container div:not(.regular-card-total)")
+    sideboard = deck_data.css("div.sorted-by-sideboard-container")
+
+    card_types.each do |cards_by_type|
+      @cards[cards_by_type.css("h5").text] = []
+      cards_by_type.css("span.row").each do |card|
+        @cards[cards_by_type.css("h5").text] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
+      end
+    end
+
+    @cards[sideboard.css("h5").text] = []
+    sideboard.css("span.row").each do |card|
+      @cards[sideboard.css("h5").text] << {"#{card.css("span.card-name a").text}" => card.css("span.card-count").text.to_i}
     end
   end
 

@@ -32,7 +32,7 @@ class MTGOEventDecks::Event
       event.name = doc.css("div.article-item-extended")[i].css("div.title h3").text
       event.date = doc.css("div.article-item-extended")[i].css("div.title p").text.strip
       event.url = "https://magic.wizards.com#{doc.css("div.article-item-extended")[i].css("a").attribute("href").value}"
-      event.decks = MTGOEventDecks::Deck.event_decks(event.url)
+      event.decks = MTGOEventDecks::Deck.event_decks(event.url, event)
     end
   end
 end
